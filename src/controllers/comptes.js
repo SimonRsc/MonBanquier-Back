@@ -63,7 +63,7 @@ module.exports = {
     }
 
 
-    let data = await sequelize.query('SELECT c.*,u.* from comptes c join usersComptes uc join users u on c.compteId = uc.compteId and c.compteCreateur = u.userId where uc.userId = :userId;', {
+    let data = await sequelize.query('select comptes.*, users.* from users_comptes join comptes on (comptes."compteId" = users_comptes."compteId") join users on ( comptes."compteCreateur" = users."userId" ) where users_comptes."userId" = :userId;', {
       replacements: {
         userId: parseInt(id)
       },

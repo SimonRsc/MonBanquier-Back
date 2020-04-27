@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = require('./database.js');
 
 
-const usersComptes = db.define('usersComptes', {
+const usersComptes = db.define('users_comptes', {
   userId: {
     type: Sequelize.INTEGER,
     references: {
@@ -25,7 +25,7 @@ const usersComptes = db.define('usersComptes', {
     primaryKey: true
 
   }
-})
+});
 
 
 module.exports = usersComptes;
