@@ -50,7 +50,7 @@ module.exports = {
         let id = req.params['stockId'];
         const token = req.headers.authorization;
         const result = await jwt.verify(token,process.env.SECRET);
-        await bourseModel.destroy({where: {stockId: id, userId: result.userId}});
+        await bourseModel.destroy({where: {stockId: id, stockUserId: result.userId}});
         res.json({status: true, message: 'Stock removed'});
     },
 
