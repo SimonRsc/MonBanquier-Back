@@ -17,13 +17,13 @@ module.exports = {
         if(result.userId != data.userId){
             throw {message: 'Access Forbidden'};
         }
-        
+
         await bourseModel.create({
             stockCode: data.code,
             stockPru: data.pru,
             stockQte: data.qte,
             stockBuyingDate: data.date,
-            stockUserID: data.userId,
+            stockUserId: data.userId,
         });
         res.json({status: true, message: 'Stock line added'});
     },
