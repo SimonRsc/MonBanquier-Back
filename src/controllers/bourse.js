@@ -13,8 +13,8 @@ module.exports = {
         }
         let data = JSON.parse(req.body['data']);
         const token = req.headers.authorization;
-        const result = jwt.verify(token,process.env.SECRET);
-        if(result.userId !== data.userId){
+        const result = await jwt.verify(token,process.env.SECRET);
+        if(result.userId != data.userId){
             throw {message: 'Access Forbidden'};
         }
         await bourseModel.create({
@@ -33,11 +33,11 @@ module.exports = {
         }
         let id = req.params['userId'];
         const token = req.headers.authorization;
-        const result = jwt.verify(token,process.env.SECRET);
-        if(result.userId !== id){
+        const result = await jwt.verify(token,process.env.SECRET);
+        if(result.userId != id){
             throw {message: 'Access Forbidden'};
         }
-        let data = await bourseModel.findAll({where: {stockUserId:userId}, order: ['stockCode']});
+        let data = await bourseModel.findAll({where: {stockUserId:id}, order: ['stockCode']});
         res.json({stock: data});
     },
 
@@ -48,7 +48,7 @@ module.exports = {
         }
         let id = req.params['stockId'];
         const token = req.headers.authorization;
-        const result = jwt.verify(token,process.env.SECRET);
+        const result = await jwt.verify(token,process.env.SECRET);
         await budgetModel.destroy({where: {stockId: id, userId: result.userId}});
         res.json({status: true, message: 'Stock removed'});
     },
