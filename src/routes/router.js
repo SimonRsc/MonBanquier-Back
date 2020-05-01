@@ -15,5 +15,6 @@ router.use('/api/comptes',require('./comptesRouter'));
 router.use('/api/users',require('./userRouter'));
 router.use('/api/operations',require('./operationRouter'));
 router.use('/api/budgets',require('./budgetsRouter'));
+router.use('/api/bourse', require('./bourseRouter'));
 
 module.exports = router;
